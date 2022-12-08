@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include <Headers/Command_Variable/packet.h>
+#include <Headers/Command_Variable/acConfig.h>
 #include <Headers/GPIO/pin.h>
 #include <Headers/Network/client.h>
 #include <Headers/Network/mqtt.h>
@@ -9,6 +10,7 @@
 // STATIC
 void setupAC();
 void checkAC();
+void configAC(bool option);
 void readButtonTransmit();
 void readButtonLoop();
 void publishFlag(const String flag);
@@ -47,9 +49,9 @@ void loop()
     mqttReconnect();
   }
   client.loop();
-  wifiCheck();
   readButtonLoop();
   readButtonTransmit();
+  wifiCheck();
 }
 
 /////////////STATIC FUNCTION/////////////
@@ -109,6 +111,14 @@ void checkAC()
   Serial.println("Starting from the begining again ...");
 }
 
+void configAC(bool option)
+{
+  ac.next.protocol = lastDecode;
+  ac.next.power = option;
+  acPower = option;
+  ac.sendAc();
+}
+
 void readButtonLoop()
 {
   int buttonValue = digitalRead(buttonLoop);
@@ -123,23 +133,17 @@ void readButtonTransmit()
   int buttonValue = digitalRead(buttonTransmit);
   if (buttonValue == LOW)
   {
-    ac.next.protocol = lastDecode;
     while (digitalRead(buttonTransmit) == LOW)
       ;
-
     if (acPower == true)
     {
-      ac.next.power = false;
-      ac.sendAc();
-      acPower = false;
+      configAC(true);
       Serial.print("Sent turn off signal: ");
       Serial.println(typeToString(lastDecode));
     }
     else if (acPower == false)
     {
-      ac.next.power = true;
-      ac.sendAc();
-      acPower = true;
+      configAC(false);
       Serial.print("Sent turn on signal: ");
       Serial.println(typeToString(lastDecode));
     }
@@ -236,11 +240,12 @@ void callback(char *topic, byte *message, unsigned int length)
   //***Insert code here to control other devices***
   if (strMsg == serverRequestACOn)
   {
-    
+    configAC(true);
     publishConfirm();
   }
   else if (strMsg == serverRequestACOff)
   {
+    configAC(false);
     publishConfirm();
   }
 }
