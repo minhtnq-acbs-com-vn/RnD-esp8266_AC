@@ -87,10 +87,7 @@ void checkAC()
   for (int i = 0; i < sizeOfArray; i++)
   {
     int buttonValue = digitalRead(buttonLoop);
-    if (buttonValue == HIGH)
-    {
-      break;
-    }
+    if (buttonValue == HIGH) break;
     decode_type_t protocol = chosenBrand[i];
     Serial.println("Protocol " + String(protocol) + " / " +
                    typeToString(protocol) + " is supported.");
@@ -135,19 +132,7 @@ void readButtonTransmit()
   {
     while (digitalRead(buttonTransmit) == LOW)
       ;
-    if (acPower == true)
-    {
-      configAC(true);
-      Serial.print("Sent turn off signal: ");
-      Serial.println(typeToString(lastDecode));
-    }
-    else if (acPower == false)
-    {
-      configAC(false);
-      Serial.print("Sent turn on signal: ");
-      Serial.println(typeToString(lastDecode));
-    }
-
+    (acPower == true) ? configAC(false) : configAC(true);
     Serial.println("buttonTransmit Pressed");
   }
 }
