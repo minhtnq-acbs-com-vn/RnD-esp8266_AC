@@ -4,5 +4,8 @@
 // Setup string
 const String serverRequestACOn = "requestACOn";
 const String serverRequestACOff = "requestACOff";
+const String deviceACConfirmed = "deviceACConfirmed";
 
-const String deviceConfirmed = "deviceACConfirmed";
+const String serverRequestLightOn = "requestLightOn";
+const String serverRequestLightOff = "requestLightOff";
+const String deviceLightConfirmed = "deviceLightConfirmed";

@@ -13,6 +13,7 @@ void checkAC();
 void configAC(bool option);
 void readButtonTransmit();
 void readButtonLoop();
+void setLight(String state);
 void publishFlag(const String flag);
 void publishConfirm(String type);
 // NETWORK
@@ -40,6 +41,7 @@ void setup()
   setupAC();
   EEPROM.begin(romSize);
   EEPROM.get(romAddress, lastDecode);
+  pinMode(lightTrigger, OUTPUT);
 }
 
 void loop()
@@ -87,7 +89,8 @@ void checkAC()
   for (int i = 0; i < sizeOfArray; i++)
   {
     int buttonValue = digitalRead(buttonLoop);
-    if (buttonValue == HIGH) break;
+    if (buttonValue == HIGH)
+      break;
     decode_type_t protocol = chosenBrand[i];
     Serial.println("Protocol " + String(protocol) + " / " +
                    typeToString(protocol) + " is supported.");
@@ -137,9 +140,21 @@ void readButtonTransmit()
   }
 }
 
-void publishConfirm()
+// Control relay
+void setLight(String state)
 {
-  client.publish(topicACACK, deviceConfirmed.c_str());
+  if (state == "on")
+    digitalWrite(lightTrigger, HIGH);
+  else if (state == "off")
+    digitalWrite(lightTrigger, LOW);
+}
+
+void publishConfirm(String type)
+{
+  if (type == "ac")
+    client.publish(topicACACK, deviceACConfirmed.c_str());
+  else if (type == "light")
+    client.publish(topicACACK, deviceLightConfirmed.c_str());
 }
 /////////////STATIC FUNCTION/////////////
 
@@ -226,12 +241,22 @@ void callback(char *topic, byte *message, unsigned int length)
   if (strMsg == serverRequestACOn)
   {
     configAC(true);
-    publishConfirm();
+    publishConfirm("ac");
   }
   else if (strMsg == serverRequestACOff)
   {
     configAC(false);
-    publishConfirm();
+    publishConfirm("ac");
+  }
+  else if (strMsg == serverRequestLightOn)
+  {
+    setLight("on");
+    publishConfirm("light");
+  }
+  else if (strMsg == serverRequestLightOff)
+  {
+    setLight("off");
+    publishConfirm("light");
   }
 }
 /////////////DATA HANDLING FUNCTION/////////////

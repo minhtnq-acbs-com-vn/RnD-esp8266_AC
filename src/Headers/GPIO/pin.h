@@ -9,3 +9,4 @@ IRac ac(kIrLed);
 
 const int buttonLoop = D4;
 const int buttonTransmit = D3;
+const int lightTrigger = 2;
