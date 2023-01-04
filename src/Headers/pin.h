@@ -6,10 +6,12 @@
 #include <IRutils.h>
 
 inline uint16_t kIrLed = D2;
+inline uint16_t kIrLed2 = D3;
 inline IRac ac(kIrLed);
+inline IRac ac2(kIrLed2);
 
-inline int buttonLoop = D4;
-inline int buttonTransmit = D3;
+inline int buttonLoop = D5;
+inline int buttonTransmit = D4;
 inline int lightTrigger = 2;
 
 #endif
