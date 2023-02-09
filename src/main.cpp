@@ -15,8 +15,8 @@ void setup()
   wifiConnect();
   setupMQTTConnection();
 
-  pinMode(buttonLoop, INPUT);
-  pinMode(buttonTransmit, INPUT);
+  pinMode(buttonLoop, INPUT_PULLUP);
+  pinMode(buttonTransmit, INPUT_PULLUP);
   delay(200);
   setupAC();
   EEPROM.begin(romSize);

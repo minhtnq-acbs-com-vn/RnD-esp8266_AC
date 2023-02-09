@@ -8,10 +8,10 @@
 #include "acconfig.h"
 
 // Setup MQTT
-inline const char *mqttServer = "192.168.68.101";
+inline const char *mqttServer = "test.mosquitto.org";
 inline const char *mqttUsername = "pi";
 inline const char *mqttPassword = "qwertasdfg";
-inline int port = 1885;
+inline int port = 1883;
 
 inline const char *mqttClientID = String(ESP.getChipId()).c_str();
 
