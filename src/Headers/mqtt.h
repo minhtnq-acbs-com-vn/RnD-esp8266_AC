@@ -6,6 +6,7 @@
 #include "packet.h"
 #include "static.h"
 #include "acconfig.h"
+#include "api.h"
 
 // Setup MQTT
 inline const char *mqttServer = "test.mosquitto.org";
@@ -17,6 +18,7 @@ inline const char *mqttClientID = String(ESP.getChipId()).c_str();
 
 void setupMQTTConnection();
 void callback(char *topic, byte *message, unsigned int length);
+void requestFilter(String request);
 void mqttReconnect();
 
 #endif

@@ -14,7 +14,10 @@ void setup()
   // Init wifi and mqtt
   wifiConnect();
   setupMQTTConnection();
-
+  delay(500);
+  sentDeviceInfo();
+  delay(500);
+  setupDeviceConfig();
   pinMode(buttonLoop, INPUT_PULLUP);
   pinMode(buttonTransmit, INPUT_PULLUP);
   delay(200);
@@ -26,12 +29,12 @@ void setup()
 
 void loop()
 {
-  if (!client.connected())
-  {
-    mqttReconnect();
-  }
-  client.loop();
-  readButtonLoop();
-  readButtonTransmit();
-  wifiCheck();
+  // if (!client.connected())
+  // {
+  //   mqttReconnect();
+  // }
+  // client.loop();
+  // readButtonLoop();
+  // readButtonTransmit();
+  // wifiCheck();
 }

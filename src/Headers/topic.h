@@ -8,4 +8,7 @@ inline const char *topicACACK = "espInACwithLight/room1/ACK";
 // To device
 inline const char *topicACServer = "espInACwithLight/room1/server";
 
+inline String topic[] = {topicACDevice, topicACACK, topicACServer};
+inline String topicKey[] = {"subscribe", "ack", "publish"};
+
 #endif

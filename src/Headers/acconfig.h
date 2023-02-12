@@ -5,6 +5,7 @@
 #include <IRac.h>
 #include <IRutils.h>
 #include "pin.h"
+#include "static.h"
 
 inline boolean acPower = false;
 

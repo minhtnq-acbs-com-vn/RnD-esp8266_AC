@@ -2,8 +2,9 @@
 
 void setupMQTTConnection()
 {
-    client.setServer(mqttServer, port);
-    client.setCallback(callback);
+  secureClient.setInsecure();
+  client.setServer(mqttServer, port);
+  client.setCallback(callback);
 }
 
 void callback(char *topic, byte *message, unsigned int length)
@@ -15,27 +16,21 @@ void callback(char *topic, byte *message, unsigned int length)
     strMsg += (char)message[i];
   }
   Serial.println(strMsg);
-  //***Insert code here to control other devices***
-  if (strMsg == serverRequestACOn)
-  {
+  requestFilter(strMsg);
+}
+
+void requestFilter(String request)
+{
+  if (request == serverRequestACOn)
     configAC(true);
-    publishConfirm("ac");
-  }
-  else if (strMsg == serverRequestACOff)
-  {
+  if (request == serverRequestACOff)
     configAC(false);
-    publishConfirm("ac");
-  }
-  else if (strMsg == serverRequestLightOn)
-  {
+  if (request == serverRequestLightOn)
     setLight("on");
-    publishConfirm("light");
-  }
-  else if (strMsg == serverRequestLightOff)
-  {
+  if (request == serverRequestLightOff)
     setLight("off");
-    publishConfirm("light");
-  }
+  if (request == requestAPI)
+    setupDeviceConfig();
 }
 
 void mqttReconnect()

@@ -67,7 +67,7 @@ void checkAC()
     Serial.println("Sending a message to turn ON the A/C unit.");
     ac.sendAc();
     ac2.sendAc();
-    delay(3000); // Wait 3 second.
+    delay(1000); // Wait 1 second.
   }
   int finalTimeRan = millis() - startTimeRan;
   Serial.print("Loop all brand time: ");
@@ -85,6 +85,7 @@ void configAC(bool option)
   ac2.next.power = option;
   acPower = option;
   ac2.sendAc();
+  publishConfirm("ac");
 }
 
 void readButtonLoop()
