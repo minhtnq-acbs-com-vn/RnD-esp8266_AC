@@ -3,10 +3,10 @@
 
 // Setup topic
 // From device
-inline const char *topicACDevice = "espInACwithLight/room1";
-inline const char *topicACACK = "espInACwithLight/room1/ACK";
+inline const char *topicACDevice = "AC/room1";
+inline const char *topicACACK = "AC/room1/ACK";
 // To device
-inline const char *topicACServer = "espInACwithLight/room1/server";
+inline const char *topicACServer = "AC/room1/server";
 
 inline String topic[] = {topicACDevice, topicACACK, topicACServer};
 inline String topicKey[] = {"subscribe", "ack", "publish"};

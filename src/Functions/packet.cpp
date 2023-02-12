@@ -7,6 +7,12 @@ String packToJson()
     doc["room"] = roomName;
     doc["deviceModule"] = deviceModule;
 
+    JsonArray arr = doc.createNestedArray("function");
+    for (auto &elementKey : deviceFunc)
+    {
+        arr.add(elementKey);
+    }
+
     int pos = 0;
     JsonObject topicObj = doc.createNestedObject("topic");
     for (auto &elementKey : topicKey)
