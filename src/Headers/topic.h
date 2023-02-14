@@ -8,7 +8,7 @@ inline const char *topicACACK = "AC/room1/ACK";
 // To device
 inline const char *topicACServer = "AC/room1/server";
 
-inline String topic[] = {topicACDevice, topicACACK, topicACServer};
+inline String topic[] = {topicACServer, topicACACK, topicACDevice};
 inline String topicKey[] = {"subscribe", "ack", "publish"};
 
 #endif
