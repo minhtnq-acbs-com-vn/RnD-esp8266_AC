@@ -29,12 +29,12 @@ void setup()
 
 void loop()
 {
-  // if (!client.connected())
-  // {
-  //   mqttReconnect();
-  // }
-  // client.loop();
-  // readButtonLoop();
-  // readButtonTransmit();
-  // wifiCheck();
+  if (!client.connected())
+  {
+    mqttReconnect();
+  }
+  client.loop();
+  readButtonLoop();
+  readButtonTransmit();
+  wifiCheck();
 }
