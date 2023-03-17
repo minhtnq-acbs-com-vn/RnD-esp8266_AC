@@ -9,9 +9,9 @@
 #include "api.h"
 
 // Setup MQTT
-inline const char *mqttServer = "test.mosquitto.org";
-inline const char *mqttUsername = "pi";
-inline const char *mqttPassword = "qwertasdfg";
+inline const char *mqttServer = "rndaedss.ddns.net";
+inline const char *mqttUsername = "aws";
+inline const char *mqttPassword = "Rnd_AEDSS2023";
 inline int port = 1883;
 
 inline const char *mqttClientID = String(ESP.getChipId()).c_str();

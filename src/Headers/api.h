@@ -9,7 +9,7 @@
 #include "pin.h"
 #include "topic.h"
 
-inline const String apiHost = "https://perfect-cow-14.telebit.io/api/v1/device";
+inline const String apiHost = "https://rndaedss.ddns.net/api/v1/device";
 inline const String roomName = "room1";
 inline const String deviceModule = "AC";
 inline const String deviceFunc[] = {"AC", "LightTrigger"};
