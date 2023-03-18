@@ -3,6 +3,7 @@
 String packToJson()
 {
     DynamicJsonDocument doc(1024);
+    doc["userID"] = userID;
     doc["deviceName"] = deviceName;
     doc["room"] = roomName;
     doc["deviceModule"] = deviceModule;

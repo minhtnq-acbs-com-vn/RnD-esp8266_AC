@@ -5,6 +5,7 @@ void sentDeviceInfo()
     HTTPClient http;
     String payload = "";
     http.begin(secureClient, apiHost);
+    http.addHeader("userid", userID);
     String json = packToJson();
     Serial.println(json);
     http.addHeader("Content-Type", "application/json");
@@ -15,6 +16,7 @@ void sentDeviceInfo()
         http.end();
         delay(10000);
         http.begin(secureClient, apiHost);
+        http.addHeader("userid", userID);
         String json = packToJson();
         http.addHeader("Content-Type", "application/json");
         int httpCode = http.POST(json);
@@ -35,6 +37,7 @@ String getDeviceInfo()
     HTTPClient http;
     String payload = "";
     http.begin(secureClient, apiQuery);
+    http.addHeader("userid", userID);
 
     int httpCode = http.GET();
     Serial.println(http.errorToString(httpCode));
@@ -43,6 +46,7 @@ String getDeviceInfo()
         http.end();
         delay(10000);
         http.begin(secureClient, apiQuery);
+        http.addHeader("userid", userID);
         int httpCode = http.GET();
         Serial.println(http.errorToString(httpCode));
         if (httpCode == 200)
