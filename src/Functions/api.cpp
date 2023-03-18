@@ -87,7 +87,6 @@ void setupPacketConfig(DynamicJsonDocument doc)
 void setupPin(DynamicJsonDocument doc)
 {
     kIrLed = doc["pin"]["ac1"].as<int>();
-    kIrLed2 = doc["pin"]["ac2"].as<int>();
     buttonTransmit = doc["pin"]["buttonTransmit"].as<int>();
     buttonLoop = doc["pin"]["buttonLoop"].as<int>();
     lightTrigger = doc["pin"]["lightTrigger"].as<int>();
