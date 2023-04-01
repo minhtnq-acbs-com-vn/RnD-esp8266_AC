@@ -67,6 +67,7 @@ void readButtonLoop()
   int buttonValue = digitalRead(buttonLoop);
   if (buttonValue == LOW)
   {
+    Serial.println("Hit loop");
     checkAC();
   }
 }
@@ -76,6 +77,7 @@ void readButtonTransmit()
   int buttonValue = digitalRead(buttonTransmit);
   if (buttonValue == LOW)
   {
+    Serial.println("Hit transmit");
     while (digitalRead(buttonTransmit) == LOW)
       ;
     (acPower == true) ? configAC(false) : configAC(true);

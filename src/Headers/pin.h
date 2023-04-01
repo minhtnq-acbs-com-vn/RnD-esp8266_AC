@@ -10,7 +10,7 @@ inline IRac ac(kIrLed);
 
 inline int buttonTransmit = D4;
 inline int buttonLoop = D5;
-inline int lightTrigger = 2;
+inline int lightTrigger = D6;
 
 inline int pin[] = {kIrLed, buttonTransmit, buttonLoop, lightTrigger};
 inline String pinKey[] = {"ac", "buttonTransmit", "buttonLoop", "lightTrigger"};
