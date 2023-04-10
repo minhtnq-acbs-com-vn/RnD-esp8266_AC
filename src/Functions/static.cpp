@@ -5,9 +5,9 @@
 void setLight(String state)
 {
   if (state == "on")
-    digitalWrite(lightTrigger, HIGH);
-  if (state == "off")
     digitalWrite(lightTrigger, LOW);
+  if (state == "off")
+    digitalWrite(lightTrigger, HIGH);
   publishConfirm("light");
 }
 

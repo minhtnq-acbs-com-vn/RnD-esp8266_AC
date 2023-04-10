@@ -10,6 +10,11 @@ void setup()
   // Init Serial console
   Serial.begin(9600);
   Serial.print("Connecting to WiFi");
+  
+  digitalWrite(lightTrigger, HIGH);
+  pinMode(lightTrigger, OUTPUT);
+  pinMode(buttonLoop, INPUT_PULLUP);
+  pinMode(buttonTransmit, INPUT_PULLUP);
 
   // Init wifi and mqtt
   wifiConnect();
@@ -18,13 +23,10 @@ void setup()
   sentDeviceInfo();
   delay(500);
   setupDeviceConfig();
-  pinMode(buttonLoop, INPUT_PULLUP);
-  pinMode(buttonTransmit, INPUT_PULLUP);
   delay(200);
   setupAC();
   EEPROM.begin(romSize);
   EEPROM.get(romAddress, lastDecode);
-  pinMode(lightTrigger, OUTPUT);
 }
 
 void loop()
