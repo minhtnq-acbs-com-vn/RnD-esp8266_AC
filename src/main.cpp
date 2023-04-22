@@ -15,6 +15,10 @@ void setup()
   pinMode(lightTrigger, OUTPUT);
   pinMode(buttonLoop, INPUT_PULLUP);
   pinMode(buttonTransmit, INPUT_PULLUP);
+  delay(200);
+  setupAC();
+  EEPROM.begin(romSize);
+  EEPROM.get(romAddress, lastDecode);
 
   // Init wifi and mqtt
   wifiConnect();
@@ -23,10 +27,6 @@ void setup()
   sentDeviceInfo();
   delay(500);
   setupDeviceConfig();
-  delay(200);
-  setupAC();
-  EEPROM.begin(romSize);
-  EEPROM.get(romAddress, lastDecode);
 }
 
 void loop()
